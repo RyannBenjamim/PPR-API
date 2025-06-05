@@ -3,7 +3,7 @@ const path = require("path");
 const fs = require("fs");
 
 // Define o diretório de destino para as imagens de perfil
-const dir = path.join(__dirname, "..", "uploads", "profile");
+const dir = path.join("/tmp", "uploads", "profile");
 
 // Garante que o diretório existe, criando-o se necessário
 if (!fs.existsSync(dir)) {

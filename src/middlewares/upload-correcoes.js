@@ -8,7 +8,7 @@ const storage = multer.diskStorage({
     const usuarioId = req.params.usuarioId
 
     retornarUmUsuario(usuarioId).then(() => {
-      const dir = path.join(__dirname, "..", "uploads", "correcoes", usuarioId)
+      const dir = path.join('/tmp', 'uploads', 'correcoes', usuarioId)
 
       if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir, { recursive: true })

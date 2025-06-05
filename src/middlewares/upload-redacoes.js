@@ -7,18 +7,20 @@ const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const usuarioId = req.params.usuarioId
 
-    retornarUmUsuario(usuarioId).then(() => {
-      const dir = path.join(__dirname, "..", "uploads", "redacoes", usuarioId)
+    retornarUmUsuario(usuarioId)
+      .then(() => {
+        const dir = path.join('/tmp', 'uploads', 'redacoes', usuarioId)
 
-      if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir, { recursive: true })
-      }
+        if (!fs.existsSync(dir)) {
+          fs.mkdirSync(dir, { recursive: true })
+        }
 
-      cb(null, dir)
-    }).catch(error => {
-      console.error("Erro ao verificar usuário ou criar diretório:", error)
-      cb(error, null)
-    })
+        cb(null, dir)
+      })
+      .catch(error => {
+        console.error("Erro ao verificar usuário ou criar diretório:", error)
+        cb(error, null)
+      });
   },
 
   filename: (req, file, cb) => {
@@ -31,4 +33,5 @@ const storage = multer.diskStorage({
 const upload = multer({ storage })
 
 module.exports = upload
+
 
